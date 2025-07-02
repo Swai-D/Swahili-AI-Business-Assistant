@@ -1,5 +1,5 @@
 {
-  "name": "Swahili AI Business Assistant (Pro Version)",
+  "name": "Swahili AI Business Assistant (Pro Version - Enhanced)",
   "nodes": [
     {
       "parameters": {
@@ -69,7 +69,7 @@
         "promptType": "define",
         "text": "={{ $json.messages[0].text.body }}",
         "options": {
-          "systemMessage": "Wewe ni msaidizi wa duka la CICI Store. Utatumia tools zifuatazo kujibu maswali ya mteja. \n\n**Kipaumbele cha Kwanza: Kusimamia Token ya Uthibitisho**\n1.  **Check Token**: Daima, kama hatua ya kwanza kabisa ya swali lolote, tumia tool hii kuangalia kama `token` ipo kwenye mfumo na bado inafanya kazi. \n2.  **Login Request**: Ikiwa `Check Token` itaonyesha kuwa hakuna `token` au `token` iliyopo haifanyi kazi (mfano, umepata hitilafu ya 'Authorization Failed' kwenye jibu la `Check Token`), basi fanya `Login Request` kwa kutumia `/api/login`. Tumia sifa za kuingia zilizopangwa (cici-store-chatbot@gmail.com na davyswai1995).\n3.  **Save Token**: Mara baada ya kufanya `Login Request` kwa mafanikio na kupokea `token` mpya, LAZIMA utumie tool ya `Save Token` kuihifadhi kwenye `workflow static data`. Hii ni muhimu ili token itumike kwa maombi yajayo bila kulogin tena.\n4.  Hakikisha una `token` halali kabla ya kuendelea na hatua nyingine.\n\n**Tools za Kupata Data (Tumia tu baada ya kuthibitisha token halali):**\n* **Get Products**: Kupata orodha ya bidhaa kupitia `/api/products`. \n* **Get Sales**: Kupata rekodi za mauzo kupitia `/api/sales`. \n* **Get Expenses**: Kupata rekodi za gharama kupitia `/api/expenses`. \n\n**Jinsi ya Kutuma Maombi ya Data (Kama una token halali):**\nKila tool ya 'Get' itatuma HTTP request kwenda `https://cici-store-production.up.railway.app{{$json.tool.url}}`. Unapotumia `Get Products`, `Get Sales`, au `Get Expenses`, LAZIMA utume `token` iliyohifadhiwa kama `Authorization: Bearer <token>` katika `headers` za request.\n\n**Jinsi ya Kujibu:**\n* Kama mteja anauliza kuhusu 'bidhaa', 'mauzo', au 'gharama', fuata hatua zote za usimamizi wa token kwanza, kisha tumia tool husika ya 'Get'.\n* Jibu maswali ya mteja kwa kutumia taarifa uliyopata kutoka kwenye tools.\n* Kama hujaelewa vizuri swali la mteja, jibu kwa kusema: \"Ngoja nikuhakikishie kwanza.\"\n\n**Muhimu:** Daima hakikisha una token halali kabla ya kujaribu kupata data ya bidhaa, mauzo, au gharama."
+          "systemMessage": "Wewe ni msaidizi wa duka la CICI Store. Utatumia tools zifuatazo kujibu maswali ya mteja. \n\n**Kipaumbele cha Kwanza: Kusimamia Token ya Uthibitisho**\n1.  **Check Token**: Daima, kama hatua ya kwanza kabisa ya swali lolote, tumia tool hii kuangalia kama `token` ipo kwenye mfumo na bado inafanya kazi. \n2.  **Login Request**: Ikiwa `Check Token` itaonyesha kuwa hakuna `token` au `token` iliyopo haifanyi kazi (mfano, umepata hitilafu ya 'Authorization Failed' kwenye jibu la `Check Token` au jibu lina 'error_code: 401'), basi fanya `Login Request` kwa kutumia `/api/login`. Tumia sifa za kuingia zilizopangwa (cici-store-chatbot@gmail.com na davyswai1995).\n3.  **Save Token**: Mara baada ya kufanya `Login Request` kwa mafanikio na kupokea `token` mpya, LAZIMA utumie tool ya `Save Token` kuihifadhi kwenye `workflow static data`. Hii ni muhimu ili token itumike kwa maombi yajayo bila kulogin tena.\n4.  Hakikisha una `token` halali kabla ya kuendelea na hatua nyingine.\n\n**Tools za Kupata Data (Tumia tu baada ya kuthibitisha token halali):**\n* **Get Products**: Kupata orodha ya bidhaa kupitia `/api/products`. \n* **Get Sales**: Kupata rekodi za mauzo kupitia `/api/sales`. \n* **Get Expenses**: Kupata rekodi za gharama kupitia `/api/expenses`. \n\n**Jinsi ya Kutuma Maombi ya Data (Kama una token halali):**\nKila tool ya 'Get' itatuma HTTP request kwenda `https://cici-store-production.up.railway.app{{$json.tool.url}}`. Unapotumia `Get Products`, `Get Sales`, au `Get Expenses`, LAZIMA utume `token` iliyohifadhiwa kama `Authorization: Bearer <token>` katika `headers` za request.\n\n**Jinsi ya Kujibu na Kushughulikia Makosa:**\n* Kama mteja anauliza kuhusu 'bidhaa', 'mauzo', au 'gharama', fuata hatua zote za usimamizi wa token kwanza, kisha tumia tool husika ya 'Get'.\n* Ikiwa tool ya 'Get' itarudisha ujumbe wa makosa (mfano, 'error: failed_to_get_products', 'error: failed_to_get_sales', 'error: failed_to_get_expenses'), jibu kwa kusema: \"Samahani, kuna tatizo la kiufundi kwenye kupata [jina la data, mfano bidhaa]. Tafadhali jaribu tena baadae.\" Kisha unaweza kupendekeza njia mbadala au kuomba ufafanuzi.\n* Jibu maswali ya mteja kwa kutumia taarifa uliyopata kutoka kwenye tools.\n* Kama hujaelewa vizuri swali la mteja, jibu kwa kusema: \"Ngoja nikuhakikishie kwanza.\"\n\n**Muhimu:** Daima hakikisha una token halali kabla ya kujaribu kupata data ya bidhaa, mauzo, au gharama."
         }
       },
       "id": "30150935-4e47-4b7d-a349-c71aae66496f",
@@ -201,7 +201,7 @@
         400
       ],
       "id": "a2ed92d6-09a2-4777-af72-2d2680135da8",
-      "name": "Get Products1"
+      "name": "Get Products"
     },
     {
       "parameters": {
@@ -232,7 +232,7 @@
         420
       ],
       "id": "07c9201b-a6b5-4afd-9b45-fbb97c3f6183",
-      "name": "Get Sales1"
+      "name": "Get Sales"
     },
     {
       "parameters": {
@@ -263,154 +263,46 @@
         380
       ],
       "id": "55ce5709-d768-4944-b822-38be44502167",
-      "name": "Get Expenses1"
+      "name": "Get Expenses"
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            { "name": "error", "value": "={{$json[\"statusCode\"] && $json[\"statusCode\"] !== 200 ? 'error' : 'ok'}}" }
-          ]
-        },
-        "options": {}
+        "jsCode": "const response = $json;\n\nif (response.statusCode && response.statusCode >= 400) {\n  return [{ json: { error: `failed_to_get_products`, details: response } }];\n} else {\n  return [{ json: { products_data: response } }];\n}"
       },
-      "name": "Set Error Flag (Products)",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 2,
-      "position": [600, 400],
-      "id": "set_error_products"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            { "value1": "={{$json[\"error\"]}}", "operation": "equal", "value2": "error" }
-          ]
-        }
-      },
-      "name": "IF Error? (Products)",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [800, 400],
-      "id": "if_error_products"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "658079574061461",
-        "recipientPhoneNumber": "={{$('WhatsApp Trigger').item.json.messages[0].from}}",
-        "textBody": "Samahani, kuna tatizo la kiufundi kwenye kupata bidhaa. Tafadhali jaribu tena baadae.",
-        "additionalFields": {}
-      },
-      "name": "Send WhatsApp Error (Products)",
-      "type": "n8n-nodes-base.whatsApp",
+      "name": "Handle Products Response",
+      "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [1000, 300],
-      "id": "send_whatsapp_error_products",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "YOUR_WHATSAPP_CRED_ID",
-          "name": "WhatsApp account"
-        }
-      }
+      "position": [
+        500,
+        550
+      ],
+      "id": "handle_products_response"
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            { "name": "error", "value": "={{$json[\"statusCode\"] && $json[\"statusCode\"] !== 200 ? 'error' : 'ok'}}" }
-          ]
-        },
-        "options": {}
+        "jsCode": "const response = $json;\n\nif (response.statusCode && response.statusCode >= 400) {\n  return [{ json: { error: `failed_to_get_sales`, details: response } }];\n} else {\n  return [{ json: { sales_data: response } }];\n}"
       },
-      "name": "Set Error Flag (Sales)",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 2,
-      "position": [600, 600],
-      "id": "set_error_sales"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            { "value1": "={{$json[\"error\"]}}", "operation": "equal", "value2": "error" }
-          ]
-        }
-      },
-      "name": "IF Error? (Sales)",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [800, 600],
-      "id": "if_error_sales"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "658079574061461",
-        "recipientPhoneNumber": "={{$('WhatsApp Trigger').item.json.messages[0].from}}",
-        "textBody": "Samahani, kuna tatizo la kiufundi kwenye kupata mauzo. Tafadhali jaribu tena baadae.",
-        "additionalFields": {}
-      },
-      "name": "Send WhatsApp Error (Sales)",
-      "type": "n8n-nodes-base.whatsApp",
+      "name": "Handle Sales Response",
+      "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [1000, 500],
-      "id": "send_whatsapp_error_sales",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "YOUR_WHATSAPP_CRED_ID",
-          "name": "WhatsApp account"
-        }
-      }
+      "position": [
+        680,
+        570
+      ],
+      "id": "handle_sales_response"
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            { "name": "error", "value": "={{$json[\"statusCode\"] && $json[\"statusCode\"] !== 200 ? 'error' : 'ok'}}" }
-          ]
-        },
-        "options": {}
+        "jsCode": "const response = $json;\n\nif (response.statusCode && response.statusCode >= 400) {\n  return [{ json: { error: `failed_to_get_expenses`, details: response } }];\n} else {\n  return [{ json: { expenses_data: response } }];\n}"
       },
-      "name": "Set Error Flag (Expenses)",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 2,
-      "position": [600, 800],
-      "id": "set_error_expenses"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            { "value1": "={{$json[\"error\"]}}", "operation": "equal", "value2": "error" }
-          ]
-        }
-      },
-      "name": "IF Error? (Expenses)",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [800, 800],
-      "id": "if_error_expenses"
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "phoneNumberId": "658079574061461",
-        "recipientPhoneNumber": "={{$('WhatsApp Trigger').item.json.messages[0].from}}",
-        "textBody": "Samahani, kuna tatizo la kiufundi kwenye kupata gharama. Tafadhali jaribu tena baadae.",
-        "additionalFields": {}
-      },
-      "name": "Send WhatsApp Error (Expenses)",
-      "type": "n8n-nodes-base.whatsApp",
+      "name": "Handle Expenses Response",
+      "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [1000, 700],
-      "id": "send_whatsapp_error_expenses",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "YOUR_WHATSAPP_CRED_ID",
-          "name": "WhatsApp account"
-        }
-      }
+      "position": [
+        900,
+        530
+      ],
+      "id": "handle_expenses_response"
     },
     {
       "parameters": {
@@ -421,15 +313,18 @@
         "values": [
           "={{$now}}",
           "={{$('WhatsApp Trigger').item.json.messages[0].from}}",
-          "={{$json.messages ? $json.messages[0].text.body : ''}}",
-          "={{$json.output || $json['textBody'] || $json['status'] || ''}}",
-          "={{$json.error || ''}}"
+          "={{$json.messages ? $json.messages[0].text.body : ($('AI Agent').item.json.prompt || '')}}",
+          "={{$('Send WhatsApp').item.json.textBody || $json.output || $json['textBody'] || $json['status'] || ''}}",
+          "={{($json.error) ? JSON.stringify($json.details || $json.error) : ''}}"
         ]
       },
       "name": "Log to Google Sheets",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 2,
-      "position": [1200, 0],
+      "position": [
+        1200,
+        0
+      ],
       "id": "log_google_sheets",
       "credentials": {
         "googleSheetsOAuth2Api": {
@@ -471,6 +366,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -479,6 +381,13 @@
         [
           {
             "node": "Send WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log to Google Sheets",
             "type": "main",
             "index": 0
           }
@@ -518,7 +427,7 @@
         ]
       ]
     },
-    "Get Products1": {
+    "Get Products": {
       "ai_tool": [
         [
           {
@@ -527,9 +436,18 @@
             "index": 0
           }
         ]
+      ],
+      "main": [
+        [
+          {
+            "node": "Handle Products Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
-    "Get Sales1": {
+    "Get Sales": {
       "ai_tool": [
         [
           {
@@ -538,14 +456,76 @@
             "index": 0
           }
         ]
+      ],
+      "main": [
+        [
+          {
+            "node": "Handle Sales Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
-    "Get Expenses1": {
+    "Get Expenses": {
       "ai_tool": [
         [
           {
             "node": "AI Agent",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ],
+      "main": [
+        [
+          {
+            "node": "Handle Expenses Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Products Response": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool_return",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Sales Response": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool_return",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Expenses Response": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool_return",
             "index": 0
           }
         ]
